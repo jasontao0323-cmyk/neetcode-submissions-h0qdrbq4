@@ -1,0 +1,20 @@
+# Search 
+# Binary search halves the search space by comparing the middle element to the target. The recursive version calls 
+# itself on the appropriate half until the target is found or the range is invalid.
+# TC: O(logn)
+# SC: O(logn)
+
+class Solution:
+    def binary_search(self, l: int, r: int, nums: List[int], target: int) -> int:
+        if l > r:
+            return -1
+        m = l + (r - l) // 2
+
+        if nums[m] == target:
+            return m
+        if nums[m] < target:
+            return self.binary_search(m + 1, r, nums, target)
+        return self.binary_search(l, m - 1, nums, target)
+
+    def search(self, nums: List[int], target: int) -> int:
+        return self.binary_search(0, len(nums) - 1, nums, target)
