@@ -1,0 +1,16 @@
+# findmin
+# Binary search finds the minimum element in a 
+# rotated sorted array by comparing the middle value with the rightmost value.
+# TC: O(logn)
+# SC: O(1)
+
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        l, r = 0, len(nums) - 1
+        while l < r:
+            m = l + (r - l) // 2
+            if nums[m] < nums[r]:
+                r = m
+            else:
+                l = m + 1
+        return nums[l]
